@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Resolve.Hotels.API.Services;
@@ -9,15 +10,25 @@ namespace Resolve.Hotels.API.Controllers
     [Route("api/hotel")]
     public class HotelController: BaseController<HotelViewModel, HotelEntity>
     {
-        public HotelController(IHotelServices service) : base(service)
+        private readonly IUserService _userService;
+        public HotelController(IHotelServices service, IUserService userService) : base(service)
         {
+            _userService = userService;
         }
         
         [Route("addToFavorites")]
         [HttpPost]
-        public async Task<IActionResult> AddToFavorites()
+        public async Task<IActionResult> AddToFavorites(UserFavoriteViewModel viewModel)
         {
-            return Ok();
+            try
+            {
+                await _userService.Add(viewModel);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

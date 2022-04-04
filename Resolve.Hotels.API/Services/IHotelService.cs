@@ -5,6 +5,5 @@ namespace Resolve.Hotels.API.Services
 {
     public interface IHotelServices: IGenericService<HotelViewModel, HotelEntity>
     {
-        
     }
 }

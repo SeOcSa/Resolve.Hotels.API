@@ -8,10 +8,5 @@ namespace Resolve.Hotels.DAL.Repositories.Concrete
         public HotelRepository(DbContext dbContext) : base(dbContext)
         {
         }
-
-        public void AddToFavorite(string userId, string hotelId)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

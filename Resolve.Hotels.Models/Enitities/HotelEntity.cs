@@ -5,7 +5,7 @@ namespace Resolve.Hotels.Models
     public class HotelEntity : Entity
     {
         public string Name { get; set; }
-        public byte[] Image { get; set; }
+        public string StoreId { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

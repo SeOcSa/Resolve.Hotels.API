@@ -4,7 +4,7 @@ using Resolve.Hotels.Models.Enitities;
 
 namespace Resolve.Hotels.DAL.Repositories.Interfaces
 {
-    public interface IGenericRepository<T> where T : Entity
+    public interface IGenericRepository<T>
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetAsync(string id);

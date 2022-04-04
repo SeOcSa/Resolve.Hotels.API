@@ -10,6 +10,7 @@ using Resolve.Hotels.DAL;
 using Resolve.Hotels.DAL.Repositories.Concrete;
 using Resolve.Hotels.DAL.Repositories.Interfaces;
 using Resolve.Hotels.Models;
+using Resolve.Hotels.Models.AppSettings;
 using Resolve.Hotels.Models.Enitities;
 
 namespace Resolve.Hotels.API
@@ -41,6 +42,12 @@ namespace Resolve.Hotels.API
             });
 
             services.AddSingleton(new DbContext(Configuration["MongoDb:ConnectionString"]));
+            services.AddSingleton(new MongoDocumentStore(new MongoStoreInfo
+            {
+                ConnectionString = Configuration["MongoDbStore:ConnectionString"],
+                DatabaseName = Configuration["MongoDbStore:DatabaseName"],
+                PartitionName = Configuration["MongoDbStore:PartitionName"]
+            }));
             services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IHotelServices, HotelService>();
             
