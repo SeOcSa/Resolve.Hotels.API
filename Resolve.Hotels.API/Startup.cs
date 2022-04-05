@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,8 +49,11 @@ namespace Resolve.Hotels.API
                 DatabaseName = Configuration["MongoDbStore:DatabaseName"],
                 PartitionName = Configuration["MongoDbStore:PartitionName"]
             }));
+            
             services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IHotelServices, HotelService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
             
             services.AddCors(options =>
             {
